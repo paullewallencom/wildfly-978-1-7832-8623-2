@@ -1,0 +1,40 @@
+<subsystem xmlns="urn:jboss:domain:datasources:2.0">
+	<datasources>
+		<datasource jndi-name="java:/MySqlDS" pool-name="MySqlDS_Pool"
+			enabled="true" jta="true" use-java-context="true" use-ccm="true">
+			<connection-url>
+				jdbc:mysql://localhost:3306/MyDB
+			</connection-url>
+			<driver>mysql</driver>
+			<pool />
+			<security>
+				<user-name>jboss</user-name>
+				<password>jboss</password>
+			</security>
+			<statement />
+			<timeout>
+				<idle-timeout-minutes>0</idle-timeout-minutes>
+				<query-timeout>600</query-timeout>
+			</timeout>
+		</datasource>
+		<datasource jndi-name="java:jboss/datasources/ExampleDS"
+			pool-name="ExampleDS" enabled="true" use-java-context="true">
+			<connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+			</connection-url>
+			<driver>h2</driver>
+			<security>
+				<user-name>sa</user-name>
+				<password>sa</password>
+			</security>
+		</datasource>
+		<drivers>
+			<driver name="mysql" module="com.mysql">
+				<xa-datasource-class>com.mysql.jdbc.Driver</xa-datasource-class>
+			</driver>
+			<driver name="h2" module="com.h2database.h2">
+				<xa-datasource-class>org.h2.jdbcx.JdbcDataSource
+				</xa-datasource-class>
+			</driver>
+		</drivers>
+	</datasources>
+</subsystem>
